@@ -3,20 +3,9 @@ import { Link, useParams } from 'react-router-dom'
 import Card from '../components/Card'
 import { useFetchSimulacao } from '../services/SimulacaoService'
 import { Simulacao } from '../models/Simulacao'
-import CardResultado from '../components/CardResultado'
+//import CardResultado from '../components/CardResultado'
 import Tabs from '../components/Tab'
 
-
-
-function formatCurrency(valor:number) {
-  const formattedNumber = new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
-    minimumFractionDigits: 2,
-  }).format(valor);
-  
-  return formattedNumber;
-}
 function SimulacaoPage() {
   const { prazo, valor } = useParams()
 
@@ -74,7 +63,7 @@ function SimulacaoPage() {
       </div>
       <div className="m-auto col-span-1">
         Valor do Empréstimo:<br/>
-        <span className="text-2xl font-bold text-gray-800">R$ {formatCurrency(parseFloat(valor.toString()))}</span>
+        <span className="text-2xl font-bold text-gray-800">R$ {valor!.toString()}</span>
         <br/>Prazo:<br/>
         <span className="text-2xl font-bold text-gray-800">{prazo} meses</span>
       </div>

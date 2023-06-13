@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { ResultadoSimulacao } from '../models/ResultadoSimulacao';
 import CardParcela from './CardParcela';
 

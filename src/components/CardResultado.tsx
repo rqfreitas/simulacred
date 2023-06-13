@@ -3,6 +3,9 @@ import CardParcela from './CardParcela'
 type Props={
   resultado:ResultadoSimulacao[]
 }
+
+
+
 const CardResultado =({resultado}:Props) =>{
   console.log('resultado')
   console.log(resultado)
