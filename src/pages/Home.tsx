@@ -16,7 +16,7 @@ function Home() {
   }
   const handleValor = (e: any) => {
     //const floatValue = (e.target.value).replace('R$', '')//.replace('.', '').replace(',', '.');
-    setValor((e.target.value).replace('R$', ''));
+    setValor((e.target.value).replace('R$', '').replace('.', ''));
     //console.log(e.target.value)
   }
   

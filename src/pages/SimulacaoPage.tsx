@@ -4,17 +4,29 @@ import Card from '../components/Card'
 import { useFetchSimulacao } from '../services/SimulacaoService'
 import { Simulacao } from '../models/Simulacao'
 import CardResultado from '../components/CardResultado'
+import Tabs from '../components/Tab'
 
 
+
+function formatCurrency(valor:number) {
+  const formattedNumber = new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+    minimumFractionDigits: 2,
+  }).format(valor);
+  
+  return formattedNumber;
+}
 function SimulacaoPage() {
   const { prazo, valor } = useParams()
 
   const valorFinal = Number(valor!.replace('.', '').replace(',', '.'))
   // console.log(valorFinal)
+  //alert(valorFinal)
   const entrada = { valorDesejado: valorFinal, prazo: Number(prazo) }
-  const simulacao = useFetchSimulacao(entrada)
-
-  // console.log(simulacao)
+  //const simulacao : any = {data: {codigoProduto:2, descricaoProduto:"produto tal", taxaJuros:2}}//useFetchSimulacao(entrada)
+ const simulacao = useFetchSimulacao(entrada)
+   console.log(simulacao)
 
   if(simulacao.isLoading) { 
     return <div className='m-auto max-w-2xl mt-4'>Carregando...</div>
@@ -62,7 +74,7 @@ function SimulacaoPage() {
       </div>
       <div className="m-auto col-span-1">
         Valor do Empréstimo:<br/>
-        <span className="text-2xl font-bold text-gray-800">R$ {valor}</span>
+        <span className="text-2xl font-bold text-gray-800">R$ {formatCurrency(parseFloat(valor.toString()))}</span>
         <br/>Prazo:<br/>
         <span className="text-2xl font-bold text-gray-800">{prazo} meses</span>
       </div>
@@ -70,12 +82,12 @@ function SimulacaoPage() {
       
     </div>
     <hr></hr>
-    <div className=' grid grid-cols-2'>
-      <div className="m-auto col-span-1">
-        <CardResultado resultado={simulacaoData!.resultadoSimulacao!}/>
+    <div className="m-auto ">
+      <div className="m-auto ">
+      <Tabs resultado={simulacaoData!.resultadoSimulacao!}/>
+        {/* <CardResultado resultado={simulacaoData!.resultadoSimulacao!}/> */}
       </div>
-      <div className="m-auto col-span-1">
-        </div>
+      
     </div>
     <Link to="/">
     <button className="inline-block mt-4 rounded bg-gradient-to-r from-sky-700 via-teal-700 to-teal-500 p-[2px] hover:text-white focus:outline-none focus:ring active:text-opacity-75">
